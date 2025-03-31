@@ -77,5 +77,12 @@ function displayBooks() {
   }
 }
 
+function addBook() {
+  const btnClick = document.querySelector('.newBookBtn');
+  btnClick.addEventListener('click', () => {
+    console.log('hello');
+  });
+}
+
 displayBooks();
 addBook();

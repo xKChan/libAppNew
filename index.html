@@ -10,5 +10,35 @@
   <body>
     <div class="libraryContainer"></div>
     <button class="newBookBtn">Add New Book</button>
+    <!-- <dialog class="showForm"> -->
+      <form>
+        <p></p>
+        <p>
+          <label for="getTitle">Title:</label>
+          <input type="text" id="getTitle" name="getTitle" />
+
+        </p>
+        <p>
+          <label for="getAuthor">Author:</label>
+          <input type="text" id="getAuthor" name="getAuthor" />
+
+        </p>
+        <p>
+          <label for="getPages">Pages:</label>
+          <input type="number" id="getPages" name="getPages" />
+        </p>
+        <section>
+          <p>Read Book:</p>
+          <input type="radio" name="readYes" id="readYes">
+          <Label for="readYes">Read</Label>
+          <input type="radio" name="readNo" id="readNo">
+          <Label for="readNo">Not Read</Label>
+        </section>
+        <section>
+          <button type="submit">Save</button>
+          <button>Cancel</button>
+        </section>
+      </form>
+    </dialog>
   </body>
 </html>
