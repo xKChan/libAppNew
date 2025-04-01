@@ -79,9 +79,39 @@ function displayBooks() {
 
 function addBook() {
   const btnClick = document.querySelector('.newBookBtn');
+  const showForm = document.querySelector('.showForm');
+  const saveButton = document.getElementById('saveButton');
+  const closeButton = document.getElementById('cancelButton');
+  const getTitle = document.getElementById('getTitle');
+  const getAuthor = document.getElementById('getAuthor');
+  const getPages = document.getElementById('getPages');
+  // const getTitle = document.getElementById('getTitle');
+
   btnClick.addEventListener('click', () => {
-    console.log('hello');
+    showForm.showModal();
   });
+
+  closeButton.addEventListener('click', e => {
+    showForm.close();
+    e.preventDefault();
+  });
+
+  saveButton.addEventListener('click', e => {
+    let addTitle = getTitle.value;
+    let addAuthor = getAuthor.value;
+    let addPages = getPages.value;
+    addBookToLibrary(addTitle, addAuthor, addPages, 'read');
+    clearPage();
+    displayBooks();
+    showForm.close();
+    e.preventDefault();
+  });
+}
+
+function clearPage() {
+  while (libraryContainer.firstChild) {
+    libraryContainer.removeChild(libraryContainer.firstChild);
+  }
 }
 
 displayBooks();
