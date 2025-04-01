@@ -81,10 +81,14 @@ button {
   padding: 5px 15px;
 }
 
+.showForm {
+  margin: 50px auto;
+}
+
 form {
   display: block;
-  margin: 0 auto;
-  width: 70%;
+  margin: 20px auto;
+  width: 100%;
   /* Form outline */
   padding: 1em;
   border: 1px solid #ccc;
@@ -100,19 +104,26 @@ form p {
   grid-template-rows: 1fr 1fr;
 }
 
+form h3 {
+  text-decoration: underline;
+}
+
+form fieldset {
+  margin-top: 15px;
+}
+
 label {
   /* Uniform size & alignment */
   display: inline-block;
   min-width: 90px;
 }
 
-input,
-textarea {
+input {
   /* To make sure that all text fields have the same font settings
      By default, text areas have a monospace font */
   font: 1em sans-serif;
   /* Uniform text field size */
-  width: 300px;
+  /* width: 300px; */
   box-sizing: border-box;
   /* Match form field borders */
   border: 1px solid #999;
@@ -126,9 +137,11 @@ textarea:focus {
   outline-color: #000;
 }
 
-textarea {
-  /* Align multiline text fields with their labels */
-  vertical-align: top;
-  /* Provide space to type some text */
-  height: 5em;
+.formButtons {
+  display: flex;
+}
+
+.formButtons button {
+  padding: 10px;
+  width: 100px;
 }

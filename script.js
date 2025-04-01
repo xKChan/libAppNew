@@ -1,24 +1,24 @@
 let libraryContainer = document.querySelector('.libraryContainer');
 
 const myLibrary = [
-  { title: 'Reacher', author: 'KC', pages: 95, read: 'not read' },
+  { title: 'Reacher', author: 'KC', pages: 95, read: 'Not Read' },
   {
     title: 'The Witcher',
     author: 'Andrzej Sapkowski',
     pages: 400,
-    read: 'not read',
+    read: 'Not Read',
   },
   {
     title: 'Harry Potter',
     author: 'J.K. Rowling',
     pages: 320,
-    read: 'read',
+    read: 'Read',
   },
   {
     title: '48 Laws of Power',
     author: 'Robert Greene',
     pages: 480,
-    read: 'read',
+    read: 'Read',
   },
 ];
 
@@ -85,7 +85,7 @@ function addBook() {
   const getTitle = document.getElementById('getTitle');
   const getAuthor = document.getElementById('getAuthor');
   const getPages = document.getElementById('getPages');
-  // const getTitle = document.getElementById('getTitle');
+  const getRead = document.getElementsByName('read');
 
   btnClick.addEventListener('click', () => {
     showForm.showModal();
@@ -97,14 +97,25 @@ function addBook() {
   });
 
   saveButton.addEventListener('click', e => {
+    e.preventDefault();
+
     let addTitle = getTitle.value;
     let addAuthor = getAuthor.value;
     let addPages = getPages.value;
-    addBookToLibrary(addTitle, addAuthor, addPages, 'read');
-    clearPage();
-    displayBooks();
-    showForm.close();
-    e.preventDefault();
+    let addReadStatus = '';
+
+    for (let i = 0; i < getRead.length; i++) {
+      if (getRead[i].checked) {
+        addReadStatus = getRead[i].value;
+      }
+    }
+
+    if (addTitle != '' && addAuthor != '' && addPages != '') {
+      addBookToLibrary(addTitle, addAuthor, addPages, addReadStatus);
+      clearPage();
+      displayBooks();
+      showForm.close();
+    }
   });
 }
 
