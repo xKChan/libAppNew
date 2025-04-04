@@ -171,17 +171,28 @@ function openDialog(form) {
   const btnClick = document.querySelector('.newBookBtn');
 
   btnClick.addEventListener('click', () => {
+    formReset();
     form.showModal();
   });
 }
 
 function closeDialog(form) {
   const closeButton = document.getElementById('cancelButton');
-
   closeButton.addEventListener('click', e => {
+    formReset();
     form.close();
     e.preventDefault();
   });
+}
+
+function formReset() {
+  const titleInput = document.getElementById('getTitle');
+  const authorInput = document.getElementById('getAuthor');
+  const pagesInput = document.getElementById('getPages');
+
+  titleInput.value = '';
+  authorInput.value = '';
+  pagesInput.value = '';
 }
 
 function clearPage() {
