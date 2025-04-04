@@ -65,6 +65,7 @@ h6 {
 .minWidthTitleAuth {
   min-width: 270px;
 }
+
 table {
   margin-top: 50px;
   width: 100%;
@@ -81,6 +82,13 @@ button {
   margin: 30px auto 0px;
   display: block;
 }
+
+.toggleButton {
+  margin: 0 auto;
+  width: 100%;
+  min-width: 95px;
+}
+
 .newBookBtn {
   padding: 5px 15px;
 }

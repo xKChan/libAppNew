@@ -1,35 +1,43 @@
 let libraryContainer = document.querySelector('.libraryContainer');
 
-const myLibrary = [
+const myLibrary = [];
+const dummyLib = [
   {
     title: 'Reacher',
     author: 'KC',
     pages: 95,
     read: 'Not Read',
-    id: 'daa5d7jb-8060-9846-c2e9-1711d5e07bd1',
   },
   {
     title: 'The Witcher',
     author: 'Andrzej Sapkowski',
     pages: 400,
     read: 'Not Read',
-    id: 'daa5d7db-8060-9846-c2e9-1711d5e05bd5',
   },
   {
     title: 'Harry Potter',
     author: 'J.K. Rowling',
     pages: 320,
     read: 'Read',
-    id: 'daa5d7jb-8060-9846-c2e9-1711d5e07bd2',
   },
   {
     title: '48 Laws of Power',
     author: 'Robert Greene',
     pages: 480,
     read: 'Read',
-    id: 'dab5d7db-8060-9846-c2f9-1711g5e05bd9',
   },
 ];
+
+function fillDummyLib() {
+  for (let i = 0; i < dummyLib.length; i++) {
+    let title = dummyLib[i].title;
+    let author = dummyLib[i].author;
+    let pages = dummyLib[i].pages;
+    let read = dummyLib[i].read;
+
+    addBookToLibrary(title, author, pages, read);
+  }
+}
 
 function Book(title, author, pages, read, id) {
   this.title = title;
@@ -44,8 +52,7 @@ function Book(title, author, pages, read, id) {
 }
 
 Book.prototype.readStatus = function () {
-  this.info();
-  if ((this.read = 'Read')) {
+  if (this.read == 'Read') {
     return (this.read = 'Not Read');
   } else {
     return (this.read = 'Read');
@@ -91,22 +98,26 @@ function displayBooks() {
     const bookAuthor = document.createElement('td');
     const bookPages = document.createElement('td');
     const bookRead = document.createElement('td');
+    const bookReadButton = document.createElement('button');
     const bookDelete = document.createElement('td');
     const deleteSymbol = document.createElement('span');
 
     bookTitle.classList.add('minWidthTitleAuth');
     bookAuthor.classList.add('minWidthTitleAuth');
     bookDelete.classList.add('deleteContainer');
+    bookReadButton.classList.add('toggleButton');
     deleteSymbol.classList.add('centerX');
 
     let getLibraryBook = myLibrary[i];
     bookTitle.textContent = getLibraryBook.title;
     bookAuthor.textContent = getLibraryBook.author;
     bookPages.textContent = getLibraryBook.pages;
-    bookRead.textContent = getLibraryBook.read;
+    bookReadButton.textContent = getLibraryBook.read;
     deleteSymbol.textContent = 'X';
     deleteSymbol.setAttribute('data-id', getLibraryBook.id);
+    bookReadButton.setAttribute('data-id', getLibraryBook.id);
 
+    bookRead.append(bookReadButton);
     bookDelete.append(deleteSymbol);
 
     bookContainer.append(
@@ -119,6 +130,7 @@ function displayBooks() {
     bookTableBody.appendChild(bookContainer);
   }
   deleteBook();
+  toggleReadStatus();
 }
 
 function addBook() {
@@ -194,5 +206,22 @@ function deleteBook() {
   });
 }
 
+function toggleReadStatus() {
+  const getStatusToggle = document.querySelectorAll('.toggleButton');
+
+  getStatusToggle.forEach(e => {
+    e.addEventListener('click', () => {
+      for (let i = 0; i < myLibrary.length; i++) {
+        if (e.dataset.id == myLibrary[i].id) {
+          myLibrary[i].readStatus();
+        }
+      }
+      clearPage();
+      displayBooks();
+    });
+  });
+}
+
+fillDummyLib();
 displayBooks();
 addBook();
